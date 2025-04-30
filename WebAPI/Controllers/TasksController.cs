@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using WebAPI.Interfaces;
 using WebAPI.Models;
@@ -24,7 +23,21 @@ namespace WebAPI.Controllers
             return Ok(await _taskBL.GetTaskItemsAsync(username));
         }
 
+        [HttpPost(Name = "AddTask")]
+        public async Task<IActionResult> AddTask(String taskTitle)
+        {
+            var username = User.FindFirst(ClaimTypes.Name)?.Value;
 
-                
+            var task = new TaskItem
+            {
+                Id = Guid.NewGuid(),
+                Title = taskTitle,
+                IsDone = false,
+                PorcentageCompleted = 0,
+                Username = username
+            };
+
+            return Ok(await _taskBL.InsertTaskAsync(task));
+        }
     }
 }
