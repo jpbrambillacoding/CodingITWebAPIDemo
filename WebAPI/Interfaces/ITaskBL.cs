@@ -4,7 +4,7 @@ namespace WebAPI.Interfaces
 {
     public interface ITaskBL
     {
-        Task<List<TaskItem>> GetTaskItemsAsync();
-        
+        Task<List<TaskItem>> GetTaskItemsAsync(String username);
+        Task<TaskItem> InsertTaskAsync(TaskItem item);
     }
 }

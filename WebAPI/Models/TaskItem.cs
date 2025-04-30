@@ -6,5 +6,6 @@
         public string Title { get; set; }
         public bool IsDone { get; set; }
         public string Username { get; set; }
+        public double PorcentageCompleted { get; set; } = 0;
     }
 }

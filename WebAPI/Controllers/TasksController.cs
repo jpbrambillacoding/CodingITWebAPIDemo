@@ -20,9 +20,11 @@ namespace WebAPI.Controllers
         [HttpGet(Name = "GetTasks")]
         public async Task<IActionResult> GetTasks()
         {
-            
-            return Ok(await _taskBL.GetTaskItemsAsync());
+            var username = User.FindFirst(ClaimTypes.Name)?.Value;
+            return Ok(await _taskBL.GetTaskItemsAsync(username));
         }
+
+
                 
     }
 }

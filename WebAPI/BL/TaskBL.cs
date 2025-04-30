@@ -12,11 +12,16 @@ namespace WebAPI.BL
             _taskDB = taskDB;
         }
 
-        public async Task<List<TaskItem>> GetTaskItemsAsync()
+        public async Task<List<TaskItem>> GetTaskItemsAsync(String username)
         {
-            var tasks = await _taskDB.GetTaskList();
+            var tasks = await _taskDB.GetTaskList(username);
 
             return tasks;
+        }
+
+        public Task<TaskItem> InsertTaskAsync(TaskItem item)
+        {
+            throw new NotImplementedException();
         }
     }
 }
